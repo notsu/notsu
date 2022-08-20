@@ -15,15 +15,9 @@
 </a>
 
 <a href="https://wakatime.com/@notsu">
-  <img align="right" src="https://github-readme-stats-taupe-two.vercel.app/api/wakatime?username=notsu&hide_border=true&langs_count=12&theme=tokyonight" />
+  <img align="right" width="400" src="https://github-readme-stats-taupe-two.vercel.app/api/wakatime?username=notsu&hide_border=true&langs_count=12&theme=tokyonight" />
 </a>
 
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
 <br />
 <br />
 <br />
