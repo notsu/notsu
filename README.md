@@ -44,4 +44,6 @@
 <br />
 <br />
 
+[![@notsu's Holopin board](https://holopin.io/api/user/board?user=notsu)](https://holopin.io/@notsu)
+
 [![trophy](https://github-profile-trophy.vercel.app/?username=notsu&theme=onedark)](https://github.com/notsu)
