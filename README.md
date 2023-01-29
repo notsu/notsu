@@ -6,7 +6,8 @@
 
 <img src="https://github-readme-stats.vercel.app/api?username=notsu&count_private=true&show_icons=true&theme=tokyonight&include_all_commits=true&hide_border=true" />
 <img src="http://github-readme-streak-stats.herokuapp.com?user=notsu&theme=tokyonight&hide_border=true" />
-<img src="https://activity-graph.herokuapp.com/graph?username=notsu&theme=react-dark&hide_border=true">
+<img src="https://github-readme-activity-graph.cyclic.app/graph?username=notsu&theme=react-dark&hide_border=true">
+
 
 ## 🧑🏻‍💻 Programming Languages
 
