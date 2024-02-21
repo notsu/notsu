@@ -1,5 +1,5 @@
 <a href="https://github.com/notsu">
-  <img width="324" align="right" src="https://github.com/notsu/notsu/blob/main/devcard.svg" />
+  <img src="https://api.daily.dev/devcards/v2/pUAkcQSvlNKJnGYLjtrKn.png?r=8f8" width="324" align="right" alt="Pichet Itngam's Dev Card"/>
 </a>
 
 ## 🏗 Contribution
