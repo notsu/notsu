@@ -1,0 +1,65 @@
+name: Render profile
+
+# The Rust generator lives on `main` (clean history — real commits only).
+# This workflow renders the animated SVGs from live GitHub data and force-pushes
+# them as a single-commit orphan on the `generated` branch, which the README
+# references via raw URLs. `main` never receives a bot commit.
+
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *" # daily
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "fixtures/**"
+      - "assets/**"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - ".github/workflows/render.yml"
+
+concurrency:
+  group: render-profile
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - uses: dtolnay/rust-toolchain@4cda84d5c5c54efe2404f9d843567869ab1699d4 # stable
+
+      - uses: Swatinem/rust-cache@e18b497796c12c097a38f9edb9d0641fb99eee32 # v2
+
+      - name: Render SVGs
+        env:
+          # PAT includes private-repo contributions; falls back to GITHUB_TOKEN,
+          # and the generator degrades to the committed fixture if neither works.
+          GH_STATS_PAT: ${{ secrets.GH_STATS_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: cargo run --release -- --login notsu --out out
+
+      - name: Publish to generated branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          test -f out/hero.svg && test -f out/pulse.svg
+          mkdir -p publish
+          cp out/hero.svg out/pulse.svg publish/
+          cd publish
+          git init -q
+          git checkout -q -b generated
+          git add hero.svg pulse.svg
+          git \
+            -c user.name="notsu-profile-bot" \
+            -c user.email="actions@users.noreply.github.com" \
+            commit -q -m "chore(profile): refresh $(date -u +%Y-%m-%d)"
+          git push -f \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+            generated

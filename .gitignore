@@ -1,0 +1,16 @@
+/target
+/out
+/generated
+/publish
+# local verification scratch (not part of the profile)
+/verify.html
+/notsu-verify*.png
+/.playwright-mcp
+/.lavish
+
+# OS / editor cruft
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/
