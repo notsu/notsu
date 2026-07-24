@@ -10,39 +10,34 @@
 
 > Self-taught engineer who still loves learning something new every day. I like building things and helping teams ship them — these days leading engineering at **Fastwork** in Bangkok, mostly around **Rust**, **Go**, and whatever a problem happens to need.
 
-### ⚡ Selected work &nbsp;<sub><sup>products I've shipped</sup></sub>
+### <img src="https://raw.githubusercontent.com/notsu/notsu/generated/icon-projects.svg" height="20" /> Side projects
 
-| [**dup**](https://getdup.app) ↗ | [**cavemode**](https://cavemode.app) ↗ | [**cattype**](https://cattype.io) ↗ |
-|:--|:--|:--|
-| macOS duplicate-media finder using **perceptual hashing** for photos & video. | Menu-bar app tracking Claude + Codex usage — *"watch your AI devolve."* | Competitive **multiplayer typing game** — 9 languages, real-time racing. |
-| `Rust` `Tauri 2` `Svelte 5` | `Swift` `SwiftUI` `macOS` | `SvelteKit` `Svelte 5` `Cloudflare` |
+Building things on the side is how I keep learning — nights, weekends, whenever an idea won't leave me alone. I'm collecting them at **[devpon.com](https://devpon.com)**, a little home I'm founding for everything I make.
 
-<sub>+ more side projects at **[devpon.com ↗](https://devpon.com)**</sub>
+<a href="https://devpon.com">
+  <img src="https://raw.githubusercontent.com/notsu/notsu/generated/projects.svg" width="100%" alt="Side projects: dup, cavemode, cattype, and devpon." />
+</a>
 
-### 🏛 Companies &nbsp;<sub><sup>where I've built & led</sup></sub>
+<sub>[**dup ↗**](https://getdup.app) &nbsp;·&nbsp; [**cavemode ↗**](https://cavemode.app) &nbsp;·&nbsp; [**cattype ↗**](https://cattype.io) &nbsp;·&nbsp; [**devpon ↗**](https://devpon.com)</sub>
 
-| [**Fastwork**](https://fastwork.co) — *now* | [**LINE**](https://line.me) — *prev* | [**Dek-D**](https://dek-d.com) — *prev* |
-|:--|:--|:--|
-| Leading the engineering team at Thailand's freelance marketplace — the place people go to hire and get work done. | Worked on LINE's platform for SMEs (OAPlus), helping small businesses reach customers on LINE. | Built web and mobile for a long-running community platform for Thai students. |
-| `Leadership` `Architecture` `ScyllaDB` | `Messaging` `Platform` `SME` | `Platform` `Mobile` `Community` |
+### <img src="https://raw.githubusercontent.com/notsu/notsu/generated/icon-companies.svg" height="20" /> Companies
 
-### 📊 Live pulse &nbsp;<sub><sup>self-rendered · refreshed daily</sup></sub>
+<img src="https://raw.githubusercontent.com/notsu/notsu/generated/companies.svg" width="100%" alt="Companies: Fastwork (now), WorkMotion (consulting), LINE and Dek-D (previously)." />
+
+### <img src="https://raw.githubusercontent.com/notsu/notsu/generated/icon-pulse.svg" height="20" /> Live pulse &nbsp;<sub><sup>self-rendered · refreshed daily</sup></sub>
 
 <img src="https://raw.githubusercontent.com/notsu/notsu/generated/pulse.svg" width="100%" alt="Contribution heatmap and top languages for notsu." />
 
 **Recent certifications** &nbsp;·&nbsp; `Anthropic — Claude Code` &nbsp; `Skooldio — Software Architecture` &nbsp; `Skooldio — Tactical DDD` &nbsp; `Skooldio — Product Management` &nbsp; `ScyllaDB`
 
-### 🛠 Now
+### <img src="https://raw.githubusercontent.com/notsu/notsu/generated/icon-now.svg" height="20" /> Now
 
-- Building **dup** in Rust + Tauri
-- Going deep on **Claude Code** agents
-- Leading engineering **@ Fastwork**
-- Writing at **[notsu.io](https://notsu.io)**
+<img src="https://raw.githubusercontent.com/notsu/notsu/generated/now.svg" width="100%" alt="What I'm building now — updates from my GitHub activity." />
 
-### 🤝 Keep in touch
+### <img src="https://raw.githubusercontent.com/notsu/notsu/generated/icon-contact.svg" height="20" /> Keep in touch
 
-[**notsu.io**](https://notsu.io) &nbsp;·&nbsp; [**devpon.com**](https://devpon.com) &nbsp;·&nbsp; [**LinkedIn**](https://www.linkedin.com/in/notsu) &nbsp;·&nbsp; [**X**](https://x.com/notsu) &nbsp;·&nbsp; [**GitHub**](https://github.com/notsu)
-
----
-
-<sub>⚙ This profile is compiled, not assembled — a Rust generator ([`src/`](https://github.com/notsu/notsu/tree/main/src)) renders these animated SVGs from live GitHub data, committed daily to the [`generated`](https://github.com/notsu/notsu/tree/generated) branch. No third-party card services.</sub>
+[<img src="https://raw.githubusercontent.com/notsu/notsu/generated/contact-web.svg" height="42" alt="open notsu.io" />](https://notsu.io)
+[<img src="https://raw.githubusercontent.com/notsu/notsu/generated/contact-devpon.svg" height="42" alt="open devpon.com" />](https://devpon.com)
+[<img src="https://raw.githubusercontent.com/notsu/notsu/generated/contact-linkedin.svg" height="42" alt="open in/notsu" />](https://www.linkedin.com/in/notsu)
+[<img src="https://raw.githubusercontent.com/notsu/notsu/generated/contact-x.svg" height="42" alt="open x/@notsu" />](https://x.com/notsu)
+[<img src="https://raw.githubusercontent.com/notsu/notsu/generated/contact-github.svg" height="42" alt="gh notsu" />](https://github.com/notsu)

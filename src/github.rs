@@ -11,11 +11,13 @@ use crate::model::Lang;
 /// The live fields the generator fills in around the static identity.
 pub struct Stats {
     pub commits_year: u64,
+    pub commits_week: u64,
     pub followers: u64,
     pub stars: u64,
     pub current_streak: u32,
     pub longest_streak: u32,
     pub weeks: Vec<Vec<u8>>,
+    pub week_days: Vec<u64>,
     pub langs: Vec<Lang>,
 }
 
@@ -36,16 +38,23 @@ query($login:String!){
         weeks{ contributionDays{ contributionCount } }
       }
     }
-    repositories(ownerAffiliations:OWNER, isFork:false, first:100, orderBy:{field:STARGAZERS, direction:DESC}){
+    repositories(ownerAffiliations:OWNER, isFork:false, first:100, orderBy:{field:PUSHED_AT, direction:DESC}){
       nodes{
         stargazerCount
-        languages(first:8, orderBy:{field:SIZE, direction:DESC}){
+        pushedAt
+        languages(first:12, orderBy:{field:SIZE, direction:DESC}){
           edges{ size node{ name color } }
         }
       }
     }
   }
 }"#;
+
+/// Markup / config "languages" that aren't interesting on a dev profile.
+const EXCLUDED_LANGS: &[&str] = &[
+    "HTML", "CSS", "SCSS", "Less", "Blade", "Makefile", "Dockerfile", "Shell",
+    "Batchfile", "PowerShell", "Roff", "Vim Script", "Procfile", "Mustache",
+];
 
 pub fn fetch(login: &str, token: &str) -> Result<Stats> {
     let client = reqwest::blocking::Client::builder()
@@ -113,8 +122,13 @@ pub fn fetch(login: &str, token: &str) -> Result<Stats> {
         .collect();
 
     let (current_streak, longest_streak) = streaks(&day_counts);
+    let commits_week: u64 = day_counts.iter().rev().take(7).sum();
+    let mut week_days: Vec<u64> = day_counts.iter().rev().take(7).copied().collect();
+    week_days.reverse(); // chronological
 
-    // Aggregate stars + language sizes across owned repos.
+    // Stars are all-time; languages are computed only from repos active in the
+    // last ~6 months, so the chart reflects what Pichet is actually into now.
+    let cutoff = cutoff_date();
     let mut stars = 0u64;
     let mut lang_size: std::collections::HashMap<String, (u64, String)> =
         std::collections::HashMap::new();
@@ -124,6 +138,16 @@ pub fn fetch(login: &str, token: &str) -> Result<Stats> {
                 .pointer("/stargazerCount")
                 .and_then(|v| v.as_u64())
                 .unwrap_or(0);
+
+            let recent = repo
+                .pointer("/pushedAt")
+                .and_then(|v| v.as_str())
+                .map(|p| p >= cutoff.as_str())
+                .unwrap_or(false);
+            if !recent {
+                continue;
+            }
+
             if let Some(edges) = repo.pointer("/languages/edges").and_then(|v| v.as_array()) {
                 for edge in edges {
                     let size = edge.pointer("/size").and_then(|v| v.as_u64()).unwrap_or(0);
@@ -137,7 +161,7 @@ pub fn fetch(login: &str, token: &str) -> Result<Stats> {
                         .and_then(|v| v.as_str())
                         .unwrap_or("#E4572E")
                         .to_string();
-                    if name.is_empty() {
+                    if name.is_empty() || EXCLUDED_LANGS.contains(&name.as_str()) {
                         continue;
                     }
                     let entry = lang_size.entry(name).or_insert((0, color));
@@ -151,13 +175,41 @@ pub fn fetch(login: &str, token: &str) -> Result<Stats> {
 
     Ok(Stats {
         commits_year,
+        commits_week,
         followers,
         stars,
         current_streak,
         longest_streak,
         weeks,
+        week_days,
         langs,
     })
+}
+
+/// ISO date (`YYYY-MM-DD`) ~6 months ago, for the language recency window.
+fn cutoff_date() -> String {
+    use std::time::{SystemTime, UNIX_EPOCH};
+    let secs = SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .map(|d| d.as_secs())
+        .unwrap_or(0);
+    let days = (secs / 86_400).saturating_sub(182) as i64; // ~6 months
+    let (y, m, d) = civil_from_days(days);
+    format!("{y:04}-{m:02}-{d:02}")
+}
+
+/// Days-since-Unix-epoch -> (year, month, day). Howard Hinnant's algorithm.
+fn civil_from_days(days: i64) -> (i64, u32, u32) {
+    let z = days + 719_468;
+    let era = if z >= 0 { z } else { z - 146_096 } / 146_097;
+    let doe = z - era * 146_097;
+    let yoe = (doe - doe / 1460 + doe / 36_524 - doe / 146_096) / 365;
+    let y = yoe + era * 400;
+    let doy = doe - (365 * yoe + yoe / 4 - yoe / 100);
+    let mp = (5 * doy + 2) / 153;
+    let d = (doy - (153 * mp + 2) / 5 + 1) as u32;
+    let m = if mp < 10 { mp + 3 } else { mp - 9 } as u32;
+    (if m <= 2 { y + 1 } else { y }, m, d)
 }
 
 /// Contribution count -> heatmap level 0..4 (quartiles of the year's max).

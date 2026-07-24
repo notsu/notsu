@@ -492,29 +492,39 @@
   ],
   "langs": [
     {
-      "name": "Rust",
-      "pct": 28,
-      "color": "#DEA584"
-    },
-    {
-      "name": "Go",
-      "pct": 22,
-      "color": "#00ADD8"
-    },
-    {
       "name": "TypeScript",
-      "pct": 19,
+      "pct": 31,
       "color": "#3178C6"
     },
     {
-      "name": "PHP",
-      "pct": 11,
-      "color": "#4F5D95"
+      "name": "Rust",
+      "pct": 26,
+      "color": "#DEA584"
     },
     {
       "name": "Swift",
-      "pct": 8,
+      "pct": 18,
       "color": "#F05138"
+    },
+    {
+      "name": "Dart",
+      "pct": 13,
+      "color": "#00B4AB"
+    },
+    {
+      "name": "Svelte",
+      "pct": 12,
+      "color": "#FF3E00"
     }
+  ],
+  "commits_week": 47,
+  "week_days": [
+    4,
+    9,
+    3,
+    11,
+    7,
+    7,
+    6
   ]
 }

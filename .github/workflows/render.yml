@@ -49,9 +49,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          test -f out/hero.svg && test -f out/pulse.svg
+          test -f out/hero.svg && test -f out/pulse.svg && test -f out/now.svg
           mkdir -p publish
-          cp out/hero.svg out/pulse.svg publish/
+          cp out/*.svg publish/
           cd publish
           git init -q
           git checkout -q -b generated
