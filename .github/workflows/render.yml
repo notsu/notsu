@@ -55,7 +55,7 @@ jobs:
           cd publish
           git init -q
           git checkout -q -b generated
-          git add hero.svg pulse.svg
+          git add *.svg
           git \
             -c user.name="notsu-profile-bot" \
             -c user.email="actions@users.noreply.github.com" \
